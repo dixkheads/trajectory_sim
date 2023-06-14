@@ -81,4 +81,21 @@ public class AgentInitialization {
 		}
 		return EducationLevel.Unknown;
 	}
+
+	public InfectionStatus generateInfectionStatus()
+	{
+		UniformRealDistribution uRNG = new UniformRealDistribution(rng, 0.0,
+				100.0);
+		double percentile = uRNG.sample();
+
+		if (percentile <= params.INFECTION_REQ_SYMPTOMATIC)
+		{
+			return InfectionStatus.Symptomatic;
+		}
+		else if (percentile <= params.INFECTION_REQ_ASYMPTOMATIC)
+		{
+			return InfectionStatus.Asymptomatic;
+		}
+		return InfectionStatus.Healthy;
+	}
 }

@@ -909,6 +909,7 @@ public class WorldModel extends SimState {
 		// initialize the agent
 
 		EducationLevel education = initialization.generateEducationLevel();
+		InfectionStatus infection = initialization.generateInfectionStatus();
 		double initialBalance = initialization
 				.generateInitialBalance(education);
 		double joviality = initialization.generateJovialityValue();
@@ -917,6 +918,7 @@ public class WorldModel extends SimState {
 
 		agent.setAge(initialization.generateAgentAge());
 		agent.setEducationLevel(education);
+		agent.getInfectionNeed().setInfectionStatus(infection);
 		agent.setInterest(initialization.getAgentInterest());
 		agent.getFoodNeed()
 				.setAppetite(initialization.generateAppetiteNumber());

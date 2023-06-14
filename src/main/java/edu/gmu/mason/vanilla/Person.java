@@ -83,7 +83,7 @@ public class Person implements Steppable, java.io.Serializable {
 	private AgentInterest interest;
 	@State
 	private LifeStatus lifeStatus;
-	
+
 	// strategic properties
 	@Characteristics
 	private double joviality;
@@ -100,6 +100,9 @@ public class Person implements Steppable, java.io.Serializable {
 	// level 3
 	@State
 	private LoveNeed loveNeed;
+
+	// MODDED: pandemic properties
+	private InfectionNeed infectionNeed;
 
 	// agent's daily activity-related variables
 	@Skip
@@ -163,6 +166,7 @@ public class Person implements Steppable, java.io.Serializable {
 		this.shelterNeed = new ShelterNeed(this);
 		this.financialSafetyNeed = new FinancialSafetyNeed(this);
 		this.loveNeed = new LoveNeed(this);
+		this.infectionNeed = new InfectionNeed(this);
 		this.jitter = new Jitter((model.random.nextDouble() - 0.5) * 30,
 				(model.random.nextDouble() - 0.5) * 30);
 		this.plans = new HashMap<>();
@@ -626,6 +630,9 @@ public class Person implements Steppable, java.io.Serializable {
 		
 		this.sleepNeed.kill();
 		this.sleepNeed = null;
+
+		this.infectionNeed.kill();
+		this.infectionNeed = null;
 	}
 
 	// GETTERS/SETTERS
@@ -698,6 +705,8 @@ public class Person implements Steppable, java.io.Serializable {
 	public FinancialSafetyNeed getFinancialSafetyNeed() {
 		return financialSafetyNeed;
 	}
+
+	public InfectionNeed getInfectionNeed() {return infectionNeed;}
 
 	public Family getFamily() {
 		return family;

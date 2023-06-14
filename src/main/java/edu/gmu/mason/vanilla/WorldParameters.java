@@ -142,6 +142,11 @@ public class WorldParameters extends AnnotatedPropertied {
 	public double EDUCATION_REQ_BACHELORS = EDUCATION_REQ_HS_COLLEGE + 23.0;
 	public double EDUCATION_REQ_GRADUATE = EDUCATION_REQ_BACHELORS + 13.0;
 
+
+	// MODDED: health parameters
+	public double INFECTION_REQ_SYMPTOMATIC = 5.0;
+	public double INFECTION_REQ_ASYMPTOMATIC = INFECTION_REQ_SYMPTOMATIC + 5.0;
+
 	// variables
 	public long seed;
 
