@@ -6,6 +6,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import edu.gmu.mason.vanilla.environment.BuildingUnit;
 import org.joda.time.LocalDateTime;
 import org.joda.time.LocalTime;
 
@@ -46,15 +47,22 @@ public class InfectionNeed implements Need, java.io.Serializable{
             this.lastVaccinatedTime = agent.getSimulationTime();
         }
     }
-    public void infect() {
+    public void tryInfect() {
 
     }
-    public void cure() {
+    public void tryCure() {
 
     }
     @Override
     public void update() {
-
+        if (infectionStatus == InfectionStatus.Healthy) {
+            return;
+        }
+        BuildingUnit currentBuilding = agent.getCurrentUnit();
+        List<Person> peopleNearby = agent.getModel().getAgentsByPlaceId(currentBuilding.getId());
+        for (Person people : peopleNearby) {
+            people.getInfectionNeed().tryInfect();
+        }
     }
 
     /**

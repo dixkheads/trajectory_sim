@@ -1748,6 +1748,10 @@ public class WorldModel extends SimState {
 		return (int) this.getAgents().stream().filter(p -> p.getCurrentUnit() != null && p.getCurrentUnit().getId() == id).count();
 	}
 
+	public List<Person> getAgentsByPlaceId(long id) {
+		return this.getAgents().stream().filter(p -> p.getCurrentUnit() != null && p.getCurrentUnit().getId() == id).collect(Collectors.toList());
+	}
+
 	public void incrementNumberOfAbondenedAgents() {
 		numOfAbondenedAgents++;
 	}
